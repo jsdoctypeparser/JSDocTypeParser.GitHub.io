@@ -1,0 +1,3 @@
+[submodule "jsdoctypeparser"]
+	path = jsdoctypeparser
+	url = https://github.com/OrgaChem/jsdoctypeparser.git
