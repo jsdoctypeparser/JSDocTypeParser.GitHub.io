@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jsdoctypeparser live demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link media="all" rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="style.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="prettify.css" media="all" />
+	<script type="text/javascript" src="require-simple.js"></script>
+	<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="prettify.js"></script>
+	<base href="jsdoctypeparser/lib/" />
+</head>
+<body>
+	<div class="container">
+		<div id="ie" class="alert alert-error"><strong>Warning!</strong> This demo cannot work on Internet explorer. Please try <a href="https://www.google.com/chrome/">Google Chrome</a> or <a href="https://www.mozilla.org/firefox/">Mozilla Firefox</a> or <a href="http://www.opera.com/">Opera</a>.</div>
+		<div class="page-header">
+			<h1>jsdoctypeparser live demo <a href="https://travis-ci.org/OrgaChem/jsdoctypeparser"><img src="https://travis-ci.org/OrgaChem/jsdoctypeparser.png?branch=master" alt="build status" /></a> <a href="http://badge.fury.io/js/jsdoctypeparser"><img src="https://badge.fury.io/js/jsdoctypeparser.png" alt="NPM version" /></a></h1>
+		</div>
+		<div class="row">
+			<div class="span6">
+				<h3>What is jsdoctypeparser?</h3>
+				<p>jsdoctypeparser is a <a href="https://github.com/jsdoc3/jsdoc/">Jsdoc</a> type expression parser module. It helps you to develop your template. This module is available on <a href="https://github.com/OrgaChem/jsdoctypeparser">github</a> or <a href="https://npmjs.org/package/jsdoctypeparser">npm</a>.</p>
+				<p>This module can parse:</p>
+				<dl>
+					<dt><a href="https://code.google.com/p/jsdoc-toolkit/wiki/TagParam" target="_blank">JsDoc type expressions</a></dt>
+					<dd>foo.bar, String[]</dd>
+					<dt><a href="https://developers.google.com/closure/compiler/docs/js-for-compiler" target="_blank">Closure Compiler type expressions</a></dt>
+					<dd>Array.&lt;string&gt;, function(this: Object, arg1, arg2): ret</dd>
+					<dt>Complex type expressions</dt>
+					<dd>Array.&lt;Array.&lt;string&gt;&gt;, function(function(Function))</dd>
+				</dl>
+				<p>Let's try!</p>
+				<hr />
+				<form id="form" class="form-horizontal" action="#">
+					<fieldset>
+						<label><span class="type-exp">/** @type {</span> <input id="input" type="text" placeholder="?TypeExpression="/> <span class="type-exp">} */</span></label>
+					</fieldset>
+				</form>
+				<div id="success" class="alert alert-success">Complete parsing!</div>
+				<div id="err" class="alert alert-error">
+					<h4>Syntax Error</h4>
+					<pre id="err-msg"></pre>
+				</div>
+				<hr />
+				<h4>Any questions?</h4>
+				Please ask <a href="https://twitter.com/orga_chem">@orga_chem</a> on Twitter.
+			</div>
+			<div class="span6">
+				<h3>Result</h3>
+				<h4>Parsing</h4>
+				<pre class="prettyprint lang-js linenums">var jsdoctypeparser = require('jsdoctypeparser');
+var parser = new jsdoctypeparser.Parser();
+var result = parser.parse(yourTypeExpression);
+console.log(result);</pre>
+				<p>The console output is:</p>
+				<pre id="output-obj">{
+  "types": [
+    {
+      "name": "TypeExpression"
+    }
+  ],
+  "optional": true,
+  "nullable": true,
+  "nonNullable": false
+}</pre>
+				<hr />
+				<h4>Publishing</h4>
+				<h5>toString()</h5>
+				<pre class="prettyprint lang-js linenums">console.log(result.toString());</pre>
+				<pre id="output-str">TypeExpression|undefined|null</pre>
+				<h5>toHtml()</h5>
+				<pre class="prettyprint lang-js linenums">console.log(result.toHtml());</pre>
+				<pre id="output-htm">&lt;a href="TypeExpression.html"&gt;TypeExpression&lt;/a&gt;|undefined|null</pre>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript"> prettyPrint(); </script>
+	<script type="text/javascript">
+		if (navigator.userAgent.indexOf("MSIE") >= 0) {
+			$(function() { $('#ie').show(); });
+		}
+	</script>
+	<script type="text/javascript">
+		var input = $('#input');
+		var outputObj = $('#output-obj');
+		var outputStr = $('#output-str');
+		var outputHtm = $('#output-htm');
+		var success = $('#success');
+		var err = $('#err');
+		var errMsg = $('#err-msg');
+		$('#err-close').click(function() { err.hide(); });
+
+		var jsdoctypeparser = require('./index');
+		var parser = new jsdoctypeparser.Parser();
+
+		// Be able to get a syntax error exception.
+		var Builder = jsdoctypeparser.Builder;
+		Builder.ENABLE_EXCEPTIONS = true;
+
+		input.change(function() {
+			var typeExpression = input.val();
+
+			try {
+				var result = parser.parse(typeExpression);
+				err.hide();
+				success.show();
+			}
+			catch (synErr) {
+				errMsg.text(synErr.message);
+				success.hide();
+				err.show();
+				result = Builder.getUnknownType();
+			}
+
+			outputObj.text(JSON.stringify(result, function(key, value) {
+				// Private member should be not listed.
+				return key.toString().match(/_$/) ? undefined : value;
+			}, '  '));
+
+			outputStr.text(result.toString());
+			outputHtm.text(result.toHtml());
+		});
+
+		// Kill the form submit event
+		$('#form').submit(function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+		});
+	</script>
+	<div class="footer">
+		<p><a href="https://github.com/OrgaChem/jsdoctypeparser" target="_blank">jsdoctypeparser</a> licensed under <a href="http://orgachem.mit-license.org/" target="_blank">MIT</a>.</p>
+		<p><a href="http://twitter.github.io/bootstrap/index.html" target="_blank">Twitter Bootstrap</a> licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>.</p>
+		<p><a href="http://glyphicons.com/" target="_blank">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0.</a></p>
+		<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Forgachem.github.io%2Fjsdoctypeparser%2F&charset=%28detect+automatically%29&doctype=Inline&group=0"><img src="../../valid_html5.png" alt="This page is valid HTML5." /></a></p>
+	</div>
+</body>
+</html>
