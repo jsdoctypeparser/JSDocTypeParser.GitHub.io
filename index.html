@@ -14,6 +14,14 @@
 	<base href="jsdoctypeparser/lib/" />
 </head>
 <body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 	<div class="container">
 		<div id="ie" class="alert alert-error"><strong>Warning!</strong> This demo cannot work on Internet explorer. Please try <a href="https://www.google.com/chrome/">Google Chrome</a> or <a href="https://www.mozilla.org/firefox/">Mozilla Firefox</a> or <a href="http://www.opera.com/">Opera</a>.</div>
 		<div class="page-header">
@@ -47,6 +55,37 @@
 				<hr />
 				<h4>Any questions?</h4>
 				Please ask <a href="https://twitter.com/orga_chem">@orga_chem</a> on Twitter.
+				<hr />
+				<table>
+					<tr>
+						<!-- Twitter {{{ -->
+						<td>
+							<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://orgachem.github.io/jsdoctypeparser/" data-via="orga_chem" data-lang="en">Tweet</a>
+							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						</td>
+						<!-- }}} -->
+						<!-- Google plus {{{ -->
+						<td>
+							<!-- Place this tag where you want the +1 button to render. -->
+							<div class="g-plusone" data-size="medium" data-href="http://orgachem.github.io/jsdoctypeparser/"></div>
+
+							<!-- Place this tag after the last +1 button tag. -->
+							<script type="text/javascript">
+								(function() {
+									var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+									po.src = 'https://apis.google.com/js/plusone.js';
+									var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+								})();
+							</script>
+						</td>
+						<!-- }}} -->
+						<!-- Facebook {{{ -->
+						<td>
+							<div class="fb-like" data-href="http://orgachem.github.io/jsdoctypeparser/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+						</td>
+						<!-- }}} -->
+					</tr>
+				</table>
 			</div>
 			<div class="span6">
 				<h3>Result</h3>
