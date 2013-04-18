@@ -166,9 +166,10 @@ console.log(result);</pre>
 			e.stopPropagation();
 		});
 
-		input.change(change);
 		change();
+		input.val('');
 		success.hide();
+		input.change(change);
 	</script>
 	<div class="footer">
 		<p><a href="https://github.com/OrgaChem/jsdoctypeparser" target="_blank">jsdoctypeparser</a> licensed under <a href="http://orgachem.mit-license.org/" target="_blank">MIT</a>.</p>
