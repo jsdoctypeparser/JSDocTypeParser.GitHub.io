@@ -153,10 +153,10 @@ console.log(result);</pre>
 			outputObj.text(JSON.stringify(result, function(key, value) {
 				// Private member should be not listed.
 				return key.toString().match(/_$/) ? undefined : value;
-			}, '  '));
+			}, '  ')).removeClass('prettyprinted');
 
-			outputStr.text(result.toString());
-			outputHtm.text(result.toHtml());
+			outputStr.text(result.toString()).removeClass('prettyprinted');
+			outputHtm.text(result.toHtml()).removeClass('prettyprinted');
 			prettyPrint();
 		};
 
@@ -168,6 +168,7 @@ console.log(result);</pre>
 
 		input.change(change);
 		change();
+		success.hide();
 	</script>
 	<div class="footer">
 		<p><a href="https://github.com/OrgaChem/jsdoctypeparser" target="_blank">jsdoctypeparser</a> licensed under <a href="http://orgachem.mit-license.org/" target="_blank">MIT</a>.</p>
