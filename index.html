@@ -100,24 +100,15 @@ var parser = new jsdoctypeparser.Parser();
 var result = parser.parse(yourTypeExpression);
 console.log(result);</pre>
 				<p>The console output is:</p>
-				<pre class="prettyprint lang-js linenums" id="output-obj">{
-  "types": [
-    {
-      "name": "TypeExpression"
-    }
-  ],
-  "optional": true,
-  "nullable": true,
-  "nonNullable": false
-}</pre>
+				<pre class="prettyprint lang-js linenums" id="output-obj"></pre>
 				<hr />
 				<h4>Publishing</h4>
 				<h5>toString()</h5>
 				<pre class="prettyprint lang-js linenums">console.log(result.toString());</pre>
-				<pre id="output-str" class="prettyprint lang-js linenums">TypeExpression|undefined|null</pre>
+				<pre id="output-str" class="prettyprint lang-js linenums"></pre>
 				<h5>toHtml()</h5>
 				<pre class="prettyprint lang-js linenums">console.log(result.toHtml());</pre>
-				<pre id="output-htm" class="prettyprint lang-js linenums">&lt;a href="TypeExpression.html"&gt;TypeExpression&lt;/a&gt;|undefined|null</pre>
+				<pre id="output-htm" class="prettyprint lang-js linenums"></pre>
 			</div>
 		</div>
 	</div>
@@ -173,7 +164,7 @@ console.log(result);</pre>
 		$('#form').submit(function(e) {
 			e.preventDefault();
 			e.stopPropagation();
-		};
+		});
 
 		input.change(change);
 		change();
