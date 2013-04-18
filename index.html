@@ -34,7 +34,7 @@
 				<p>This module can parse:</p>
 				<dl>
 					<dt><a href="https://code.google.com/p/jsdoc-toolkit/wiki/TagParam" target="_blank">JsDoc type expressions</a></dt>
-					<dd>foo.bar, String[]</dd>
+					<dd>foo.bar, String[], module: foo/bar</dd>
 					<dt><a href="https://developers.google.com/closure/compiler/docs/js-for-compiler" target="_blank">Closure Compiler type expressions</a></dt>
 					<dd>Array.&lt;string&gt;, function(this: Object, arg1, arg2): ret</dd>
 					<dt>Complex type expressions</dt>
@@ -44,7 +44,7 @@
 				<hr />
 				<form id="form" class="form-horizontal" action="#">
 					<fieldset>
-						<label><span class="type-exp">/** @type {</span> <input id="input" type="text" placeholder="?TypeExpression="/> <span class="type-exp">} */</span></label>
+						<label><span class="type-exp">/** @type {</span> <input id="input" type="text" placeholder="?TypeExpression=" value="?TypeExpression="/> <span class="type-exp">} */</span></label>
 					</fieldset>
 				</form>
 				<div id="success" class="alert alert-success">Complete parsing!</div>
@@ -100,7 +100,7 @@ var parser = new jsdoctypeparser.Parser();
 var result = parser.parse(yourTypeExpression);
 console.log(result);</pre>
 				<p>The console output is:</p>
-				<pre id="output-obj">{
+				<pre class="prettyprint lang-js linenums" id="output-obj">{
   "types": [
     {
       "name": "TypeExpression"
@@ -114,10 +114,10 @@ console.log(result);</pre>
 				<h4>Publishing</h4>
 				<h5>toString()</h5>
 				<pre class="prettyprint lang-js linenums">console.log(result.toString());</pre>
-				<pre id="output-str">TypeExpression|undefined|null</pre>
+				<pre id="output-str" class="prettyprint lang-js linenums">TypeExpression|undefined|null</pre>
 				<h5>toHtml()</h5>
 				<pre class="prettyprint lang-js linenums">console.log(result.toHtml());</pre>
-				<pre id="output-htm">&lt;a href="TypeExpression.html"&gt;TypeExpression&lt;/a&gt;|undefined|null</pre>
+				<pre id="output-htm" class="prettyprint lang-js linenums">&lt;a href="TypeExpression.html"&gt;TypeExpression&lt;/a&gt;|undefined|null</pre>
 			</div>
 		</div>
 	</div>
@@ -144,7 +144,7 @@ console.log(result);</pre>
 		var Builder = jsdoctypeparser.Builder;
 		Builder.ENABLE_EXCEPTIONS = true;
 
-		input.change(function() {
+		var change = function() {
 			var typeExpression = input.val();
 
 			try {
@@ -166,13 +166,17 @@ console.log(result);</pre>
 
 			outputStr.text(result.toString());
 			outputHtm.text(result.toHtml());
+			prettyPrint();
 		});
 
 		// Kill the form submit event
 		$('#form').submit(function(e) {
 			e.preventDefault();
 			e.stopPropagation();
-		});
+		};
+
+		input.change(change);
+		change();
 	</script>
 	<div class="footer">
 		<p><a href="https://github.com/OrgaChem/jsdoctypeparser" target="_blank">jsdoctypeparser</a> licensed under <a href="http://orgachem.mit-license.org/" target="_blank">MIT</a>.</p>
