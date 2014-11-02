@@ -18,7 +18,7 @@
 			height: 20px;
 		}
 	</style>
-	<base href="jsdoctypeparser/lib/" />
+	<base href="node_modules/jsdoctypeparser/lib/" />
 </head>
 <body>
 	<div id="fb-root"></div>
@@ -32,12 +32,12 @@
 	<div class="container">
 		<div id="ie" class="alert alert-error"><strong>Warning!</strong> This demo cannot work on Internet explorer. Please try <a href="https://www.google.com/chrome/">Google Chrome</a> or <a href="https://www.mozilla.org/firefox/">Mozilla Firefox</a> or <a href="http://www.opera.com/">Opera</a>.</div>
 		<div class="page-header">
-			<h1>jsdoctypeparser live demo <a href="https://travis-ci.org/OrgaChem/jsdoctypeparser"><img src="https://travis-ci.org/OrgaChem/jsdoctypeparser.png?branch=master" alt="build status" /></a> <a href="http://badge.fury.io/js/jsdoctypeparser"><img src="https://badge.fury.io/js/jsdoctypeparser.png" alt="NPM version" /></a></h1>
+			<h1>jsdoctypeparser live demo <a href="https://travis-ci.org/Kuniwak/jsdoctypeparser"><img src="https://travis-ci.org/Kuniwak/jsdoctypeparser.svg?branch=master" alt="build status" /></a> <a href="http://badge.fury.io/js/jsdoctypeparser"><img src="https://badge.fury.io/js/jsdoctypeparser.svg" alt="NPM version" /></a></h1>
 		</div>
 		<div class="row">
 			<div class="span6">
 				<h3>What is jsdoctypeparser?</h3>
-				<p>jsdoctypeparser is a <a href="https://github.com/jsdoc3/jsdoc/">Jsdoc</a> type expression parser module. This module makes easy to publish a type name link by <code>toHTML()</code>. It helps you to develop your template. This module is available on <a href="https://github.com/OrgaChem/jsdoctypeparser">github</a> or <a href="https://npmjs.org/package/jsdoctypeparser">npm</a>.</p>
+				<p>jsdoctypeparser is a <a href="https://github.com/jsdoc3/jsdoc/">Jsdoc</a> type expression parser module. This module makes easy to publish a type name link by <code>toHTML()</code>. It helps you to develop your template. This module is available on <a href="https://github.com/Kuniwak/jsdoctypeparser">github</a> or <a href="https://npmjs.org/package/jsdoctypeparser">npm</a>.</p>
 				<p>This module can parse:</p>
 				<dl>
 					<dt><a href="https://code.google.com/p/jsdoc-toolkit/wiki/TagParam" target="_blank">JsDoc type expressions</a></dt>
@@ -67,19 +67,19 @@
 					<tr>
 						<td>
 						<!-- Github {{{ -->
-							<iframe class="github-button" src="http://ghbtns.com/github-btn.html?user=OrgaChem&amp;repo=jsdoctypeparser&amp;type=watch&amp;count=true"></iframe>
+							<iframe class="github-button" src="http://ghbtns.com/github-btn.html?user=Kuniwak&amp;repo=jsdoctypeparser&amp;type=watch&amp;count=true"></iframe>
 						<!-- }}} -->
 						</td>
 						<!-- Twitter {{{ -->
 						<td>
-							<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://orgachem.github.io/jsdoctypeparser/" data-via="orga_chem" data-lang="en">Tweet</a>
+							<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://kuniwak.github.io/jsdoctypeparser/" data-via="orga_chem" data-lang="en">Tweet</a>
 							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 						</td>
 						<!-- }}} -->
 						<!-- Google plus {{{ -->
 						<td>
 							<!-- Place this tag where you want the +1 button to render. -->
-							<div class="g-plusone" data-size="medium" data-href="http://orgachem.github.io/jsdoctypeparser/"></div>
+							<div class="g-plusone" data-size="medium" data-href="http://kuniwak.github.io/jsdoctypeparser/"></div>
 
 							<!-- Place this tag after the last +1 button tag. -->
 							<script type="text/javascript">
@@ -93,7 +93,7 @@
 						<!-- }}} -->
 						<!-- Facebook {{{ -->
 						<td>
-							<div class="fb-like" data-href="http://orgachem.github.io/jsdoctypeparser/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+							<div class="fb-like" data-href="http://kuniwak.github.io/jsdoctypeparser/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 						</td>
 						<!-- }}} -->
 					</tr>
@@ -135,7 +135,7 @@ console.log(result);</pre>
 		var errMsg = $('#err-msg');
 		$('#err-close').click(function() { err.hide(); });
 
-		var jsdoctypeparser = require('./index');
+		var jsdoctypeparser = require('./index.js');
 		var parser = new jsdoctypeparser.Parser();
 
 		// Be able to get a syntax error exception.
@@ -179,10 +179,10 @@ console.log(result);</pre>
 		input.change(change);
 	</script>
 	<div class="footer">
-		<p><a href="https://github.com/OrgaChem/jsdoctypeparser" target="_blank">jsdoctypeparser</a> licensed under <a href="http://orgachem.mit-license.org/" target="_blank">MIT</a>.</p>
+		<p><a href="https://github.com/Kuniwak/jsdoctypeparser" target="_blank">jsdoctypeparser</a> licensed under <a href="http://kuniwak.mit-license.org/" target="_blank">MIT</a>.</p>
 		<p><a href="http://twitter.github.io/bootstrap/index.html" target="_blank">Twitter Bootstrap</a> licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>.</p>
 		<p><a href="http://glyphicons.com/" target="_blank">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0.</a></p>
-		<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Forgachem.github.io%2Fjsdoctypeparser%2F"><img src="http://orgachem.github.io/jsdoctypeparser/valid_html5.png" alt="This page is valid HTML5." /></a></p>
+		<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Fkuniwak.github.io%2Fjsdoctypeparser%2F"><img src="http://kuniwak.github.io/jsdoctypeparser/valid_html5.png" alt="This page is valid HTML5." /></a></p>
 	</div>
 </body>
 </html>
