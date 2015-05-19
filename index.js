@@ -146,8 +146,12 @@
       typeExprModel.parse(typeExprStr);
     });
 
-    // First rendering is placeholder mode
-    typeExprModel.isPlaceholderMode = true;
+    var $form = $('#form');
+    $form.on('submit', function(e) {
+      // Prevent page reloading when form submitted.
+      e.preventDefault();
+    });
+
     typeExprModel.parse(INITIAL_TYPE_EXPR, true);
   }
 
