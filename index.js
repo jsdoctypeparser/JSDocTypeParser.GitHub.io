@@ -11,7 +11,6 @@
 
   function TypeExpressionModel() {
     events.EventEmitter.call(this);
-    this.parser = new jsdoctypeparser.Parser();
   }
   util.inherits(TypeExpressionModel, events.EventEmitter);
 
@@ -23,14 +22,14 @@
 
   TypeExpressionModel.prototype.parse = function(typeExpr) {
     try {
-      var ast = this.parser.parse(typeExpr);
+      var ast = jsdoctypeparser.parse(typeExpr);
 
       this.ast = ast;
       this.hasSyntaxError = false;
       this.errorMessage = '';
     }
     catch (err) {
-      if (!(err instanceof jsdoctypeparser.Lexer.SyntaxError)) throw err;
+      if (!(err instanceof jsdoctypeparser.SyntaxError)) throw err;
 
       this.ast = null;
       this.hasSyntaxError = true;
@@ -42,12 +41,11 @@
 
 
 
-  function ParseResultView(model, $jsonView, $stringView, $htmlView) {
+  function ParseResultView(model, $jsonView, $stringView) {
     this.typeExprModel = model;
 
     this.$jsonView = $jsonView;
     this.$stringView = $stringView;
-    this.$htmlView = $htmlView;
 
     var self = this;
     this.typeExprModel.on(TypeExpressionModel.EventType.CHANGE, function() {
@@ -60,7 +58,6 @@
     var $allViews = $([
       this.$jsonView[0],
       this.$stringView[0],
-      this.$htmlView[0],
     ]);
 
     if (model.hasSyntaxError) {
@@ -69,8 +66,7 @@
     else {
       var ast = model.ast;
       this.$jsonView.text(JSON.stringify(ast, null, 2));
-      this.$stringView.text(ast.toString());
-      this.$htmlView.text(ast.toHtml());
+      this.$stringView.text(jsdoctypeparser.publish(ast));
     }
 
     $allViews.removeClass('prettyprinted');
@@ -176,8 +172,7 @@
   function createParseResultView(model) {
     var $jsonView = $('#output-obj');
     var $stringView = $('#output-str');
-    var $htmlView = $('#output-htm');
-    return new ParseResultView(model, $jsonView, $stringView, $htmlView);
+    return new ParseResultView(model, $jsonView, $stringView);
   }
 
 

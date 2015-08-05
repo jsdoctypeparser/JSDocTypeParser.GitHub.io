@@ -28,10 +28,12 @@
         </p>
         <p>This module can parse:</p>
         <dl class="dl-horizontal">
-          <dt><a href="https://code.google.com/p/jsdoc-toolkit/wiki/TagParam" target="jsdoc-type-expr">JSDoc style</a></dt>
+          <dt><a href="http://usejsdoc.org/tags-type.html" target="jsdoc-type-expr">JSDoc style</a></dt>
           <dd><code>foo.bar</code>, <code>String[]</code>, <code>module:foo/bar</code></dd>
           <dt><a href="https://developers.google.com/closure/compiler/docs/js-for-compiler" target="closure-compiler-type-expr">Closure Compiler style</a></dt>
           <dd><code>Array.&lt;string&gt;</code>, <code>function(arg1, arg2): ret</code></dd>
+          <dt><a href="https://github.com/senchalabs/jsduck/wiki/Type-Definitions">JSDuck type definitions</a></dt>
+          <dd><code>Boolean/"top"/"bottom"</code></dd>
           <dt>Complex types</dt>
           <dd><code>Array.&lt;Array.&lt;string&gt;&gt;</code>, <code>{ length: number }</code></dd>
         </dl>
@@ -62,20 +64,16 @@
       <div class="col-md-6">
         <h3>Result</h3>
         <h4>Parsing</h4>
-        <pre class="prettyprint lang-js linenums">var jsdoctypeparser = require('jsdoctypeparser');
-var parser = new jsdoctypeparser.Parser();
-var result = parser.parse(yourTypeExpression);
+        <pre class="prettyprint lang-js linenums">var parse = require('jsdoctypeparser').parse;
+var result = parse(yourTypeExpression);
 console.log(result);</pre>
         <p>The console output is:</p>
         <pre class="prettyprint lang-js linenums" id="output-obj"></pre>
         <hr />
         <h4>Publishing</h4>
-        <h5>toString()</h5>
-        <pre class="prettyprint lang-js linenums">console.log(result.toString());</pre>
+        <pre class="prettyprint lang-js linenums">var publish = require('jsdoctypeparser').publish;
+console.log(publish(result));</pre>
         <pre id="output-str" class="prettyprint lang-html linenums"></pre>
-        <h5>toHtml()</h5>
-        <pre class="prettyprint lang-js linenums">console.log(result.toHtml());</pre>
-        <pre id="output-htm" class="prettyprint lang-html linenums"></pre>
       </div>
     </div>
   </div>
