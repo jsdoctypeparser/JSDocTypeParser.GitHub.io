@@ -28,7 +28,7 @@
     "gulp": "^3.8.11",
     "gulp-util": "^3.0.4",
     "gulp-watch": "^4.2.4",
-    "jsdoctypeparser": "2.0.0-alpha-3",
+    "jsdoctypeparser": "2.0.0-alpha-4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }
