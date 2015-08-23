@@ -7,8 +7,18 @@
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="all">
   <link rel="stylesheet" href="styles/prettify.css" media="all">
   <link rel="stylesheet" href="styles/jsdoctypeparser-demo.css" media="all" />
+  <link rel="stylesheet" href="bower_components/github-fork-ribbon-css/gh-fork-ribbon.css" />
+  <!--[if lt IE 9]>
+    <link rel="stylesheet" href="bower_components/github-fork-ribbon-css/gh-fork-ribbon.ie.css" />
+  <![endif]--> 
+  <link rel="stylesheet" href="styles/gh-fork-ribbon.theme.css" media="all">
 </head>
 <body>
+  <div class="github-fork-ribbon-wrapper right">
+    <div class="github-fork-ribbon">
+      <a href="https://github.com/Kuniwak/jsdoctypeparser">Fork me on GitHub</a>
+    </div>
+  </div>
   <div class="container">
     <div class="page-header">
       <h1>
@@ -22,11 +32,8 @@
         <h3>What is jsdoctypeparser?</h3>
         <p>
           jsdoctypeparser is a <a href="https://github.com/jsdoc3/jsdoc/">JSDoc</a> type expression parser module.
-          This module makes easy to publish a type name link by <code>toHTML()</code>.
-          It helps you to develop your template. This module is available on <a href="https://github.com/Kuniwak/jsdoctypeparser">github</a>
-          or <a href="https://npmjs.org/package/jsdoctypeparser">npm</a>.
+          This module can parse:
         </p>
-        <p>This module can parse:</p>
         <dl class="dl-horizontal">
           <dt><a href="http://usejsdoc.org/tags-type.html" target="jsdoc-type-expr">JSDoc style</a></dt>
           <dd><code>foo.bar</code>, <code>String[]</code>, <code>module:foo/bar</code></dd>
@@ -37,6 +44,9 @@
           <dt>Complex types</dt>
           <dd><code>Array.&lt;Array.&lt;string&gt;&gt;</code>, <code>{ length: number }</code></dd>
         </dl>
+        <p>
+          This module is available on <a href="https://github.com/Kuniwak/jsdoctypeparser">github</a> or <a href="https://npmjs.org/package/jsdoctypeparser">npm</a>.
+        </p>
         <hr />
         <h3>Let's try!</h3>
         <div class="type-expr-form">

@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.4",
-    "google-code-prettify": "~1.0.4"
+    "google-code-prettify": "~1.0.4",
+    "github-fork-ribbon-css": "~0.1.1"
   }
 }
