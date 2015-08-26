@@ -1,6 +1,6 @@
 {
   "name": "jsdoctypeparser-demo",
-  "version": "2.0.0-alpha-3",
+  "version": "2.0.0-alpha-5",
   "description": "Demo for Kuniwak/jsdoctypeparser",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,7 @@
     "gulp": "^3.8.11",
     "gulp-util": "^3.0.4",
     "gulp-watch": "^4.2.4",
-    "jsdoctypeparser": "2.0.0-alpha-4",
+    "jsdoctypeparser": "2.0.0-alpha-5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }
