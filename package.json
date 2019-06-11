@@ -27,7 +27,7 @@
   "engines": {},
   "dependencies": {
     "bootstrap": "^3.4.1",
-    "github-fork-ribbon-css": "https://github.com/simonwhitaker/github-fork-ribbon-css#0.2.2",
+    "github-fork-ribbon-css": "^0.2.3",
     "google-code-prettify": "^1.0.5",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0"
