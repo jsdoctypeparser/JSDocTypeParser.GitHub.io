@@ -19,4 +19,4 @@ gulp.task('javascript', function () {
 });
 
 
-gulp.task('build', ['javascript']);
+gulp.task('build', gulp.series('javascript'));

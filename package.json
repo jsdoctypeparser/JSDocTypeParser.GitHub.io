@@ -4,7 +4,7 @@
   "description": "Demo for Kuniwak/jsdoctypeparser",
   "main": "index.js",
   "scripts": {
-    "prepublish": "gulp build",
+    "prepare": "gulp build",
     "postinstall": "bower install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,13 +28,12 @@
   "engines": {},
   "dependencies": {},
   "devDependencies": {
-    "bower": "^1.4.1",
-    "browserify": "^10.1.3",
-    "gulp": "^3.8.11",
-    "gulp-util": "^3.0.4",
-    "gulp-watch": "^4.2.4",
-    "jsdoctypeparser": "2.0.0-alpha-6",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "bower": "^1.8.8",
+    "browserify": "^16.2.3",
+    "gulp": "^4.0.2",
+    "gulp-watch": "^5.0.1",
+    "jsdoctypeparser": "4.0.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
   }
 }
