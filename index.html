@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="bower_components/github-fork-ribbon-css/gh-fork-ribbon.css" />
   <!--[if lt IE 9]>
     <link rel="stylesheet" href="bower_components/github-fork-ribbon-css/gh-fork-ribbon.ie.css" />
-  <![endif]--> 
+  <![endif]-->
   <link rel="stylesheet" href="styles/gh-fork-ribbon.theme.css" media="all">
 </head>
 <body>
@@ -74,14 +74,14 @@
       <div class="col-md-6">
         <h3>Result</h3>
         <h4>Parsing</h4>
-        <pre class="prettyprint lang-js linenums">var parse = require('jsdoctypeparser').parse;
-var result = parse(yourTypeExpression);
+        <pre class="prettyprint lang-js linenums">const {parse} = require('jsdoctypeparser');
+const result = parse(yourTypeExpression);
 console.log(result);</pre>
         <p>The console output is:</p>
         <pre class="prettyprint lang-js linenums" id="output-obj"></pre>
         <hr />
         <h4>Publishing</h4>
-        <pre class="prettyprint lang-js linenums">var publish = require('jsdoctypeparser').publish;
+        <pre class="prettyprint lang-js linenums">const {publish} = require('jsdoctypeparser');
 console.log(publish(result));</pre>
         <pre id="output-str" class="prettyprint lang-html linenums"></pre>
       </div>

@@ -17,11 +17,16 @@
     "jsdoc"
   ],
   "author": "Kuniwak",
+  "contributors": [
+    "Brett Zamir"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Kuniwak/jsdoctypeparser/issues"
   },
   "homepage": "https://github.com/Kuniwak/jsdoctypeparser",
+  "engines": {},
+  "dependencies": {},
   "devDependencies": {
     "bower": "^1.4.1",
     "browserify": "^10.1.3",
