@@ -12,7 +12,7 @@ var sourceFiles = [
   'node_modules/jquery/dist/jquery.min.js',
   'node_modules/google-code-prettify/src/prettify.js',
 ];
-var outputPath = 'copied_node_modules/';
+var outputPath = 'npm_copies/';
 
 gulp.task('copy', function () {
   return gulp
