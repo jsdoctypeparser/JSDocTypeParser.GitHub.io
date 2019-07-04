@@ -29,7 +29,7 @@
       this.errorMessage = '';
     }
     catch (err) {
-      if (!(err instanceof jsdoctypeparser.SyntaxError)) throw err;
+      if (!(err instanceof jsdoctypeparser.JSDocTypeSyntaxError)) throw err;
 
       this.ast = null;
       this.hasSyntaxError = true;

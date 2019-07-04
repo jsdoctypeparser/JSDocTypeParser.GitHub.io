@@ -1,6 +1,6 @@
 {
   "name": "jsdoctypeparser-demo",
-  "version": "4.0.0-demo-build2",
+  "version": "5.0.0-demo-build1",
   "description": "Demo for jsdoctypeparser/jsdoctypeparser",
   "main": "index.js",
   "scripts": {
@@ -36,7 +36,7 @@
     "browserify": "^16.2.3",
     "gulp": "^4.0.2",
     "gulp-watch": "^5.0.1",
-    "jsdoctypeparser": "4.0.0",
+    "jsdoctypeparser": "5.0.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   }
