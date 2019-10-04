@@ -1,18 +1,18 @@
 'use strict';
 
-var browserify = require('browserify');
-var gulp = require('gulp');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
+const browserify = require('browserify');
+const gulp = require('gulp');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
 
-var sourceFiles = [
+const sourceFiles = [
   'node_modules/bootstrap/dist/css/bootstrap.min.css',
   'node_modules/bootstrap/dist/fonts/*',
   'node_modules/github-fork-ribbon-css/gh-fork-ribbon.css',
   'node_modules/jquery/dist/jquery.min.js',
   'node_modules/google-code-prettify/src/prettify.js',
 ];
-var outputPath = 'npm_copies/';
+const outputPath = 'npm_copies/';
 
 gulp.task('copy', function () {
   return gulp
@@ -21,7 +21,7 @@ gulp.task('copy', function () {
 });
 
 gulp.task('javascript', function () {
-  var b = browserify({
+  const b = browserify({
     entries: './index.js',
     debug: true,
   });

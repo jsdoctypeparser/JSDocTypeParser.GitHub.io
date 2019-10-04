@@ -1,11 +1,11 @@
 /* globals jQuery, prettyPrint */
 (function($, prettyPrint) {
   'use strict';
-  var jsdoctypeparser = require('jsdoctypeparser');
-  var events = require('events');
-  var util = require('util');
+  const jsdoctypeparser = require('jsdoctypeparser');
+  const events = require('events');
+  const util = require('util');
 
-  var INITIAL_TYPE_EXPR = '?TypeExpression=';
+  const INITIAL_TYPE_EXPR = '?TypeExpression=';
 
 
 
@@ -22,7 +22,7 @@
 
   TypeExpressionModel.prototype.parse = function(typeExpr) {
     try {
-      var ast = jsdoctypeparser.parse(typeExpr);
+      const ast = jsdoctypeparser.parse(typeExpr);
 
       this.ast = ast;
       this.hasSyntaxError = false;
@@ -47,15 +47,14 @@
     this.$jsonView = $jsonView;
     this.$stringView = $stringView;
 
-    var self = this;
-    this.typeExprModel.on(TypeExpressionModel.EventType.CHANGE, function() {
-      self.render(self.typeExprModel);
+    this.typeExprModel.on(TypeExpressionModel.EventType.CHANGE, () => {
+      this.render(this.typeExprModel);
     });
   }
 
 
   ParseResultView.prototype.render = function(model) {
-    var $allViews = $([
+    const $allViews = $([
       this.$jsonView[0],
       this.$stringView[0],
     ]);
@@ -64,7 +63,7 @@
       $allViews.text('ERROR');
     }
     else {
-      var ast = model.ast;
+      const ast = model.ast;
       this.$jsonView.text(JSON.stringify(ast, null, 2));
       this.$stringView.text(jsdoctypeparser.publish(ast));
     }
@@ -80,10 +79,8 @@
 
     this.$alertElement = $alertElement;
 
-    var self = this;
-
-    this.typeExprModel.on(TypeExpressionModel.EventType.CHANGE, function() {
-      self.setVisibility(!self.typeExprModel.hasSyntaxError);
+    this.typeExprModel.on(TypeExpressionModel.EventType.CHANGE, () => {
+      this.setVisibility(!this.typeExprModel.hasSyntaxError);
     });
   }
 
@@ -101,14 +98,12 @@
     this.$messageElement = $messageElement;
     this.$closeButton = $closeButton;
 
-    var self = this;
-
-    this.typeExprModel.on(TypeExpressionModel.EventType.CHANGE, function() {
-      self.render(self.typeExprModel);
+    this.typeExprModel.on(TypeExpressionModel.EventType.CHANGE, () => {
+      this.render(this.typeExprModel);
     });
 
-    this.$closeButton.on('click', function() {
-      self.setVisibility(true);
+    this.$closeButton.on('click', () => {
+      this.setVisibility(true);
     });
   }
 
@@ -130,19 +125,19 @@
 
 
   function bootstrap() {
-    var typeExprModel = new TypeExpressionModel();
+    const typeExprModel = new TypeExpressionModel();
 
     createParseSuccessfulAlert(typeExprModel);
     createParseErrorAlert(typeExprModel);
     createParseResultView(typeExprModel);
 
-    var $input = $('#input');
+    const $input = $('#input');
     $input.on('change', function() {
-      var typeExprStr = $input.val();
+      const typeExprStr = $input.val();
       typeExprModel.parse(typeExprStr);
     });
 
-    var $form = $('#form');
+    const $form = $('#form');
     $form.on('submit', function(e) {
       // Prevent page reloading when form submitted.
       e.preventDefault();
@@ -154,24 +149,24 @@
 
 
   function createParseSuccessfulAlert(model) {
-    var $alertElement = $('#success');
+    const $alertElement = $('#success');
     return new ParseSuccessfulAlert(model, $alertElement);
   }
 
 
 
   function createParseErrorAlert(model) {
-    var $alertElement = $('#err');
-    var $messageElement = $('#err-msg');
-    var $closeButton = $('#err-close');
+    const $alertElement = $('#err');
+    const $messageElement = $('#err-msg');
+    const $closeButton = $('#err-close');
     return new ParseErrorAlert(model, $alertElement, $messageElement, $closeButton);
   }
 
 
 
   function createParseResultView(model) {
-    var $jsonView = $('#output-obj');
-    var $stringView = $('#output-str');
+    const $jsonView = $('#output-obj');
+    const $stringView = $('#output-str');
     return new ParseResultView(model, $jsonView, $stringView);
   }
 
