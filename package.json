@@ -1,6 +1,6 @@
 {
   "name": "jsdoctypeparser-demo",
-  "version": "5.0.1-demo-build1",
+  "version": "5.1.1-demo-build1",
   "description": "Demo for jsdoctypeparser/jsdoctypeparser",
   "main": "index.js",
   "scripts": {
