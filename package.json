@@ -1,6 +1,6 @@
 {
   "name": "jsdoctypeparser-demo",
-  "version": "5.1.1-demo-build1",
+  "version": "6.0.0-demo-build1",
   "description": "Demo for jsdoctypeparser/jsdoctypeparser",
   "main": "index.js",
   "scripts": {
@@ -31,14 +31,14 @@
     "github-fork-ribbon-css": "^0.2.3",
     "google-code-prettify": "^1.0.5",
     "jquery": "^3.4.1",
-    "popper.js": "^1.15.0"
+    "popper.js": "^1.16.0"
   },
   "devDependencies": {
     "browserify": "^16.5.0",
-    "eslint": "^6.5.1",
+    "eslint": "^6.6.0",
     "gulp": "^4.0.2",
     "gulp-watch": "^5.0.1",
-    "jsdoctypeparser": "5.1.1",
+    "jsdoctypeparser": "6.0.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   }
