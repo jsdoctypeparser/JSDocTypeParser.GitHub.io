@@ -35,10 +35,10 @@
   },
   "devDependencies": {
     "browserify": "^16.5.0",
-    "eslint": "^6.6.0",
+    "eslint": "^6.7.2",
     "gulp": "^4.0.2",
     "gulp-watch": "^5.0.1",
-    "jsdoctypeparser": "6.0.0",
+    "jsdoctypeparser": "6.1.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   }
