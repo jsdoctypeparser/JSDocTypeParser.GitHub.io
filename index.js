@@ -2,127 +2,112 @@
 (function($, prettyPrint) {
   'use strict';
   const jsdoctypeparser = require('jsdoctypeparser');
-  const events = require('events');
-  const util = require('util');
 
   const INITIAL_TYPE_EXPR = '?TypeExpression=';
 
-
-
-  function TypeExpressionModel() {
-    events.EventEmitter.call(this);
-  }
-  util.inherits(TypeExpressionModel, events.EventEmitter);
-
-
-  TypeExpressionModel.EventType = {
-    CHANGE: 'change',
-  };
-
-
-  TypeExpressionModel.prototype.parse = function(typeExpr) {
-    try {
-      const ast = jsdoctypeparser.parse(typeExpr);
-
-      this.ast = ast;
-      this.hasSyntaxError = false;
-      this.errorMessage = '';
-    }
-    catch (err) {
-      if (!(err instanceof jsdoctypeparser.JSDocTypeSyntaxError)) throw err;
-
-      this.ast = null;
-      this.hasSyntaxError = true;
-      this.errorMessage = err.message;
+  class TypeExpressionModel extends EventTarget {
+    constructor () {
+      super();
     }
 
-    this.emit(TypeExpressionModel.EventType.CHANGE);
-  };
+    parse (typeExpr) {
+      try {
+        const ast = jsdoctypeparser.parse(typeExpr);
 
+        this.ast = ast;
+        this.hasSyntaxError = false;
+        this.errorMessage = '';
+      }
+      catch (err) {
+        if (!(err instanceof jsdoctypeparser.JSDocTypeSyntaxError)) throw err;
 
+        this.ast = null;
+        this.hasSyntaxError = true;
+        this.errorMessage = err.message;
+      }
 
-  function ParseResultView(model, $jsonView, $stringView) {
-    this.typeExprModel = model;
-
-    this.$jsonView = $jsonView;
-    this.$stringView = $stringView;
-
-    this.typeExprModel.on(TypeExpressionModel.EventType.CHANGE, () => {
-      this.render(this.typeExprModel);
-    });
-  }
-
-
-  ParseResultView.prototype.render = function(model) {
-    const $allViews = $([
-      this.$jsonView[0],
-      this.$stringView[0],
-    ]);
-
-    if (model.hasSyntaxError) {
-      $allViews.text('ERROR');
+      this.dispatchEvent(new CustomEvent('change'));
     }
-    else {
-      const ast = model.ast;
-      this.$jsonView.text(JSON.stringify(ast, null, 2));
-      this.$stringView.text(jsdoctypeparser.publish(ast));
+  }
+
+  class ParseResultView {
+    constructor (model, $jsonView, $stringView) {
+      this.typeExprModel = model;
+
+      this.$jsonView = $jsonView;
+      this.$stringView = $stringView;
+
+      this.typeExprModel.addEventListener('change', () => {
+        this.render(this.typeExprModel);
+      });
     }
 
-    $allViews.removeClass('prettyprinted');
-    prettyPrint();
-  };
+    render (model) {
+      const $allViews = $([
+        this.$jsonView[0],
+        this.$stringView[0],
+      ]);
 
+      if (model.hasSyntaxError) {
+        $allViews.text('ERROR');
+      }
+      else {
+        const ast = model.ast;
+        this.$jsonView.text(JSON.stringify(ast, null, 2));
+        this.$stringView.text(jsdoctypeparser.publish(ast));
+      }
 
-
-  function ParseSuccessfulAlert(model, $alertElement) {
-    this.typeExprModel = model;
-
-    this.$alertElement = $alertElement;
-
-    this.typeExprModel.on(TypeExpressionModel.EventType.CHANGE, () => {
-      this.setVisibility(!this.typeExprModel.hasSyntaxError);
-    });
+      $allViews.removeClass('prettyprinted');
+      prettyPrint();
+    }
   }
 
+  class ParseSuccessfulAlert {
+    constructor (model, $alertElement) {
+      this.typeExprModel = model;
 
-  ParseSuccessfulAlert.prototype.setVisibility = function(isVisible) {
-    this.$alertElement.toggle(isVisible);
-  };
+      this.$alertElement = $alertElement;
 
+      this.typeExprModel.addEventListener('change', () => {
+        this.setVisibility(!this.typeExprModel.hasSyntaxError);
+      });
+    }
 
-
-  function ParseErrorAlert(model, $alertElement, $messageElement, $closeButton) {
-    this.typeExprModel = model;
-
-    this.$alertElement = $alertElement;
-    this.$messageElement = $messageElement;
-    this.$closeButton = $closeButton;
-
-    this.typeExprModel.on(TypeExpressionModel.EventType.CHANGE, () => {
-      this.render(this.typeExprModel);
-    });
-
-    this.$closeButton.on('click', () => {
-      this.setVisibility(true);
-    });
+    setVisibility (isVisible) {
+      this.$alertElement.toggle(isVisible);
+    }
   }
 
+  class ParseErrorAlert {
+    constructor (model, $alertElement, $messageElement, $closeButton) {
+      this.typeExprModel = model;
 
-  ParseErrorAlert.prototype.render = function(model) {
-    this.setVisibility(model.hasSyntaxError);
-    this.setMessage(model.errorMessage);
-  };
+      this.$alertElement = $alertElement;
+      this.$messageElement = $messageElement;
+      this.$closeButton = $closeButton;
 
+      this.typeExprModel.addEventListener('change', () => {
+        this.render(this.typeExprModel);
+      });
 
-  ParseErrorAlert.prototype.setVisibility = function(isVisible) {
-    this.$alertElement.toggle(isVisible);
-  };
+      this.$closeButton.on('click', () => {
+        this.setVisibility(true);
+      });
+    }
 
+    render (model) {
+      this.setVisibility(model.hasSyntaxError);
+      this.setMessage(model.errorMessage);
+    }
 
-  ParseErrorAlert.prototype.setMessage = function(msg) {
-    this.$messageElement.text(msg);
-  };
+    setVisibility (isVisible) {
+      this.$alertElement.toggle(isVisible);
+    }
 
+    setMessage (msg) {
+      this.$messageElement.text(msg);
+    }
+  }
 
   function bootstrap() {
     const typeExprModel = new TypeExpressionModel();
@@ -146,14 +131,10 @@
     typeExprModel.parse(INITIAL_TYPE_EXPR, true);
   }
 
-
-
   function createParseSuccessfulAlert(model) {
     const $alertElement = $('#success');
     return new ParseSuccessfulAlert(model, $alertElement);
   }
-
-
 
   function createParseErrorAlert(model) {
     const $alertElement = $('#err');
@@ -162,14 +143,11 @@
     return new ParseErrorAlert(model, $alertElement, $messageElement, $closeButton);
   }
 
-
-
   function createParseResultView(model) {
     const $jsonView = $('#output-obj');
     const $stringView = $('#output-str');
     return new ParseResultView(model, $jsonView, $stringView);
   }
-
 
   bootstrap();
 })(jQuery, prettyPrint);
