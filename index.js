@@ -3,6 +3,12 @@
   'use strict';
   const jsdoctypeparser = require('jsdoctypeparser');
 
+  const modeMap = new Map([
+    ['permissive', jsdoctypeparser.JSDocTypeSyntaxError],
+    ['jsdoc', jsdoctypeparser.JSDocSyntaxError],
+    ['closure', jsdoctypeparser.ClosureSyntaxError],
+    ['typescript', jsdoctypeparser.TypeScriptSyntaxError],
+  ]);
   const INITIAL_TYPE_EXPR = '?TypeExpression=';
 
   class ParseSuccessfulAlert {
@@ -107,16 +113,19 @@
       super();
     }
 
-    parse (typeExpr) {
+    parse (typeExpr, {mode, startRule}) {
       try {
-        const ast = jsdoctypeparser.parse(typeExpr);
+        const ast = jsdoctypeparser.parse(typeExpr, {mode, startRule});
 
         this.ast = ast;
         this.hasSyntaxError = false;
         this.errorMessage = '';
       }
       catch (err) {
-        if (!(err instanceof jsdoctypeparser.JSDocTypeSyntaxError)) throw err;
+        console.log(err);
+
+        const syntaxError = modeMap.get(mode);
+        if (!(err instanceof syntaxError)) throw err;
 
         this.ast = null;
         this.hasSyntaxError = true;
@@ -135,10 +144,26 @@
     createParseResultView(typeExprModel);
 
     const $input = $('#input');
-    $input.on('change', function() {
+    const $mode = $('#mode');
+    const $startRule = $('#startRule');
+
+    function getOptions () {
+      const mode = $mode.val();
+      const startRule = $startRule.val();
+      return {
+        mode,
+        startRule,
+      };
+    }
+
+    function parseInput () {
       const typeExprStr = $input.val();
-      typeExprModel.parse(typeExprStr);
-    });
+      typeExprModel.parse(typeExprStr, getOptions());
+    }
+
+    $input.on('change', parseInput);
+    $mode.on('change', parseInput);
+    $startRule.on('change', parseInput);
 
     const $form = $('#form');
     $form.on('submit', function(e) {
@@ -146,7 +171,9 @@
       e.preventDefault();
     });
 
-    typeExprModel.parse(INITIAL_TYPE_EXPR, true);
+    $input.val(INITIAL_TYPE_EXPR);
+
+    parseInput();
   }
 
   bootstrap();

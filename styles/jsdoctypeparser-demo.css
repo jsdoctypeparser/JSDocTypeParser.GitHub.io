@@ -33,6 +33,10 @@
 	margin-bottom: 10px;
 }
 
+.form-group {
+  padding-bottom: 10px;
+}
+
 #ie, #err, #success {
   display: none;
 }
@@ -41,4 +45,3 @@
   color: #b94a48;
   border: none;
   background-color: transparent;
-

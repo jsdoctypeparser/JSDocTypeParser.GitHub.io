@@ -48,11 +48,37 @@
         <hr />
         <h3>Let's try!</h3>
         <div class="type-expr-form">
-          <form id="form" class="form-inline">
+          <form id="form" class="form">
             <div class="form-group">
               <span class="type-exp">/** @type {</span>
               <textarea id="input" class="form-control" placeholder="?TypeExpression="></textarea>
               <span class="type-exp">} */</span>
+            </div>
+            <div class="form-group">
+              <h3>Options</h3>
+            </div>
+            <div class="form-group">
+              <label>
+                Rule: &nbsp;
+                <select id="startRule">
+                  <option value="TopTypeExpr">Top-level rule</option>
+                  <option value="BroadNamepathExpr">Namepath (broad)</option>
+                  <option value="NamepathExpr">Namepath (narrow)</option>
+                  <option value="ExternalNameExpr">External namepath</option>
+                  <option value="ModuleNameExpr">Module namepath (not in TypeScript)</option>
+                </select>
+              </label>
+            </div>
+            <div class="form-group">
+              <label>
+                Mode: &nbsp;
+                <select id="mode">
+                  <option value="jsdoc">JSDoc</option>
+                  <option value="closure">Closure (Google Closure Compiler)</option>
+                  <option value="typescript">TypeScript</option>
+                  <option value="permissive">Permissive</option>
+                </select>
+              </label>
             </div>
           </form>
         </div>
