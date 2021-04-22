@@ -25,17 +25,19 @@
     "url": "https://github.com/jsdoctypeparser/JSDocTypeParser.GitHub.io/issues"
   },
   "homepage": "https://jsdoctypeparser.github.io/",
-  "engines": {},
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "dependencies": {
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^4.6.0",
     "github-fork-ribbon-css": "^0.2.3",
     "google-code-prettify": "^1.0.5",
-    "jquery": "^3.5.1",
+    "jquery": "^3.6.0",
     "popper.js": "^1.16.1"
   },
   "devDependencies": {
-    "browserify": "^16.5.1",
-    "eslint": "^7.4.0",
+    "browserify": "^17.0.0",
+    "eslint": "^7.24.0",
     "gulp": "^4.0.2",
     "gulp-watch": "^5.0.1",
     "jsdoctypeparser": "9.0.0",
